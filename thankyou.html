@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! Your Free Chapter is Here</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="thankyou-page">
+
+    <div id="confetti-canvas"></div>
+
+    <main class="thankyou-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <svg viewBox="0 0 52 52">
+                    <circle cx="26" cy="26" r="25" fill="none"/>
+                    <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h1 id="thank-you-message">Success! You're In!</h1>
+            <p>We've sent the first chapter of "Doc, I am Dizzy!" to your inbox. It should arrive within the next 5 minutes.</p>
+
+            <div class="next-steps">
+                <h3>What's Next?</h3>
+                <ol>
+                    <li><strong>Check Your Email:</strong> Find our email and confirm your subscription.</li>
+                    <li><strong>Download Your Chapter:</strong> The PDF is attached directly in the email.</li>
+                    <li><strong>Join the Community:</strong> Connect with other readers and get exclusive content.</li>
+                </ol>
+            </div>
+
+            <div class="action-buttons">
+                <a href="downloads/sample-chapter.pdf" download class="btn btn-primary">Download Bonus Now <i class='bx bxs-download'></i></a>
+                <button id="share-btn" class="btn btn-secondary">Share with Friends <i class='bx bx-share-alt'></i></button>
+            </div>
+
+            <div class="author-connect">
+                <p>Connect with Dr. Kumar on social media:</p>
+                <div>
+                    <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+            
+            <div class="redirect-timer">
+                <p>You will be redirected to the homepage in <span id="countdown">15</span> seconds.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

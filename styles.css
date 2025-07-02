@@ -1,0 +1,340 @@
+/*
+STYLES.CSS
+---
+1.  Global & Theming (CSS Variables) - MODERN GLASS & GRADIENT THEME
+2.  Base & Typography
+3.  Layout & Helpers
+4.  Header & Navigation
+5.  Hero Section
+6.  Chapter Section (Glassmorphism Cards)
+7.  Author & Social Proof
+8.  Subscription Form
+9.  Footer
+10. Thank You Page Styles
+11. Animations & Keyframes
+12. Responsive Design
+*/
+
+/* 1. Global & Theming - MODERN GLASS & GRADIENT THEME */
+:root {
+    --color-bg-light-theme: #F9FAFB; /* Base background color */
+    --color-text: #1F2937;
+    --color-text-muted: #6B7280;
+    --color-accent: #FBBF24;
+    --color-accent-hover: #F59E0B;
+    --color-text-on-accent: #1F2937;
+    --color-border-glass: rgba(255, 255, 255, 0.5); /* Border for glass elements */
+    --color-bg-glass: rgba(255, 255, 255, 0.6); /* Background for glass elements */
+    --gradient-btn: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+    --shadow-md: 0 4px 10px -1px rgba(0, 0, 0, 0.05), 0 2px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 15px -4px rgba(0, 0, 0, 0.1);
+    --border-radius: 16px; /* Slightly larger radius for a softer look */
+}
+
+/* 2. Base & Typography */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* MODERN GRADIENT BACKGROUND: Creates a subtle, dynamic "aurora" effect */
+    background-color: var(--color-bg-light-theme);
+    background-image:
+        radial-gradient(at 20% 15%, hsla(212, 80%, 95%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 80% 20%, hsla(45, 90%, 90%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 10% 85%, hsla(260, 80%, 95%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 75% 90%, hsla(340, 75%, 95%, 0.4) 0px, transparent 50%);
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+}
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2.section-title { font-size: clamp(2rem, 4vw, 3rem); text-align: center; }
+p.section-subtitle { text-align: center; color: var(--color-text-muted); max-width: 600px; margin: 0 auto 3rem auto; }
+a { color: var(--color-accent); text-decoration: none; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-light-theme); }
+::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 10px; }
+
+
+/* 3. Layout & Helpers */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+section { padding: 6rem 0; }
+
+/* 4. Header & Navigation */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* GLASS EFFECT: Applied to scrolled header */
+.sticky-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-md);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--color-text); }
+.nav-links { display: flex; align-items: center; list-style: none; gap: 1.5rem; }
+.nav-links a { color: var(--color-text); font-weight: 600; transition: color 0.3s; }
+.nav-links a:hover { color: var(--color-accent); }
+.btn-nav { font-size: 0.9rem; padding: 0.5rem 1rem; }
+
+/* 5. Hero Section */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: transparent; /* Let the body gradient show through */
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+}
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    order: 2;
+}
+.hero-image {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-text .subtitle { font-size: 1.1rem; color: var(--color-text-muted); margin: 1.5rem 0 2.5rem; }
+.hero-buttons { display: flex; gap: 1rem; align-items: center; }
+.book-mockup { width: 100%; max-width: 400px; filter: drop-shadow(var(--shadow-lg)); transform: rotate(-5deg); transition: transform 0.5s ease; }
+.book-mockup:hover { transform: rotate(0deg) scale(1.05); }
+
+/* Buttons */
+.btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.btn-primary { background: var(--gradient-btn); color: var(--color-text-on-accent); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--color-bg-glass); border: 1px solid var(--color-border-glass); color: var(--color-text); backdrop-filter: blur(5px); }
+.btn-secondary:hover { background-color: rgba(255, 255, 255, 0.8); }
+
+/* 6. Chapter Section (Cards) */
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* GLASS EFFECT: Applied to all major card elements */
+.chapter-card, .author-content, .form-container, .success-card {
+    background: var(--color-bg-glass);
+    border: 1px solid var(--color-border-glass);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.chapter-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.card-header { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
+.card-icon { font-size: 1.8rem; color: var(--color-accent); }
+.expand-icon { margin-left: auto; font-size: 1.5rem; transition: transform 0.4s ease; }
+.card-header.active .expand-icon { transform: rotate(180deg); }
+.card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding-top 0.5s ease;
+}
+.card-body p { color: var(--color-text-muted); border-top: 1px solid var(--color-border-glass); margin-top: 1rem; padding-top: 1rem; }
+.card-header.active + .card-body { padding-top: 0; }
+
+/* 7. Author & Social Proof */
+#social-proof { text-align: center; padding: 2rem 0; }
+#social-proof p { color: var(--color-text-muted); margin-bottom: 1rem; }
+#social-proof .logos { display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.author-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem;
+}
+.author-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--color-accent); flex-shrink: 0; }
+.author-text { text-align: left; }
+.author-social { display: flex; gap: 1rem; margin-top: 1rem; }
+.author-social a { font-size: 1.5rem; color: var(--color-text-muted); transition: color 0.3s; }
+.author-social a:hover { color: var(--color-accent); }
+
+/* 8. Subscription Form */
+.form-container { padding: 3rem; text-align: center; max-width: 600px; margin: 0 auto; }
+.form-group { position: relative; margin-bottom: 2rem; }
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(243, 244, 246, 0.7); /* Slightly transparent input */
+    border: 1px solid var(--color-border-glass);
+    border-radius: 8px;
+    color: var(--color-text);
+    font-size: 1rem;
+}
+.form-group label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -0.75rem;
+    left: 0.75rem;
+    font-size: 0.8rem;
+    background: var(--color-bg-glass); /* Match the form container bg */
+    padding: 0 0.5rem;
+    color: var(--color-accent);
+}
+.btn-form { width: 100%; justify-content: center; position: relative; }
+.btn-loader {
+    border: 3px solid rgba(31, 41, 55, 0.2);
+    border-radius: 50%;
+    border-top: 3px solid var(--color-text-on-accent);
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+.btn-form.loading .btn-text { display: none; }
+.btn-form.loading .btn-loader { display: block; }
+
+/* 9. Footer */
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+footer { background: transparent; color: var(--color-text-muted); text-align: center; padding: 2rem 0; }
+.footer-links { display: flex; justify-content: center; gap: 1rem; }
+.footer-links a { color: var(--color-text-muted); }
+.footer-links a:hover { color: var(--color-accent); }
+
+/* 10. Thank You Page Styles */
+.thankyou-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem 0; }
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
+.thankyou-container { width: 90%; max-width: 600px; }
+.success-card {
+    padding: 3rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+.success-icon { margin: 0 auto 1.5rem auto; width: 80px; height: 80px; }
+.success-icon svg { width: 100%; height: 100%; }
+.success-icon circle { stroke-width: 3; stroke: var(--color-accent); stroke-dasharray: 157; stroke-dashoffset: 157; animation: draw-circle 0.5s ease-out forwards; }
+.success-icon path { stroke-width: 4; stroke: var(--color-accent); stroke-dasharray: 48; stroke-dashoffset: 48; animation: draw-check 0.4s 0.5s ease-out forwards; }
+.next-steps { text-align: left; margin: 2rem 0; background: rgba(243, 244, 246, 0.7); padding: 1.5rem; border-radius: 8px; }
+.next-steps ol { list-style-position: inside; padding-left: 0.5rem; }
+.action-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.author-connect { margin-top: 2rem; border-top: 1px solid var(--color-border-glass); padding-top: 1.5rem; }
+.redirect-timer { margin-top: 1.5rem; color: var(--color-text-muted); font-size: 0.9rem; }
+
+
+/* 11. Animations & Keyframes */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes draw-circle { to { stroke-dashoffset: 0; } }
+@keyframes draw-check { to { stroke-dashoffset: 0; } }
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Staggered animation delays */
+.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+
+/* 12. Responsive Design */
+@media (max-width: 900px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-text {
+        align-items: center;
+        order: 2;
+    }
+    .hero-image {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+    .book-mockup { margin: 0 auto; }
+    .hero-buttons { justify-content: center; }
+    .author-content { flex-direction: column; text-align: center; }
+    .author-text { text-align: center; }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    section { padding: 4rem 0; }
+    h1 { font-size: 2.2rem; }
+    .chapters-grid { grid-template-columns: 1fr; }
+    footer .container {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
