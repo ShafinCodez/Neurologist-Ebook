@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 selector: '#particle-canvas',
                 maxParticles: 100,
                 speed: 0.4,
-                color: '#6B7280', // UPDATED to muted grey for visibility on light bg
+                color: '#6B7280',
                 connectParticles: true,
                 minDistance: 80,
                 responsive: [
@@ -51,12 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Chapter Accordion
-        const chapterCards = document.querySelectorAll('.chapter-card .card-header');
-        chapterCards.forEach(cardHeader => {
-            cardHeader.addEventListener('click', () => {
-                const cardBody = cardHeader.nextElementSibling;
-                cardHeader.classList.toggle('active');
-                if (cardHeader.classList.contains('active')) {
+        const chapterHeaders = document.querySelectorAll('.chapter-card .card-header');
+        chapterHeaders.forEach(clickedHeader => {
+            clickedHeader.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.chapter-card .card-header.active');
+                
+                if (currentlyActive && currentlyActive !== clickedHeader) {
+                    currentlyActive.classList.remove('active');
+                    currentlyActive.nextElementSibling.style.maxHeight = '0px';
+                }
+
+                clickedHeader.classList.toggle('active');
+                const cardBody = clickedHeader.nextElementSibling;
+                if (clickedHeader.classList.contains('active')) {
                     cardBody.style.maxHeight = cardBody.scrollHeight + "px";
                 } else {
                     cardBody.style.maxHeight = '0px';
@@ -69,16 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
         subForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const submitBtn = this.querySelector('button[type="submit"]');
-            const nameInput = document.getElementById('name');
-            const name = encodeURIComponent(nameInput.value);
 
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
             // Simulate API call
             setTimeout(() => {
-                // Redirect to thank you page with the name as a URL parameter
-                window.location.href = `thankyou.html?name=${name}`;
+                window.location.href = `thankyou.html`;
             }, 1500);
         });
         
@@ -92,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof confetti === 'function') {
             const duration = 5 * 1000;
             const animationEnd = Date.now() + duration;
-            // UPDATED confetti colors for light theme
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, colors: ['#FBBF24', '#F59E0B', '#6B7280', '#1F2937'] };
 
             function randomInRange(min, max) {
@@ -108,24 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
             }, 250);
         }
-
-        // Personalize Message
-        const urlParams = new URLSearchParams(window.location.search);
-        const name = urlParams.get('name');
-        if (name) {
-            document.getElementById('thank-you-message').textContent = `Thank you, ${decodeURIComponent(name)}!`;
-        }
-
-        // Redirect Timer
-        const countdownElement = document.getElementById('countdown');
-        let timeLeft = 15;
-        const redirectInterval = setInterval(() => {
-            timeLeft--;
-            countdownElement.textContent = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(redirectInterval);
-                window.location.href = 'index.html';
-            }
-        }, 1000);
+        
+        // TIMER LOGIC REMOVED
     }
 });
