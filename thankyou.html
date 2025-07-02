@@ -6,11 +6,13 @@
     <title>Thank You! Your Free Chapter is Here</title>
     <meta name="robots" content="noindex, nofollow">
 
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
 
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="thankyou-page">
@@ -25,37 +27,60 @@
                     <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
                 </svg>
             </div>
-            <h1 id="thank-you-message">Success! You're In!</h1>
+            <h1>Success! You're In!</h1>
             <p>We've sent the first chapter of "Doc, I am Dizzy!" to your inbox. It should arrive within the next 5 minutes.</p>
 
-            <div class="next-steps">
-                <h3>What's Next?</h3>
-                <ol>
-                    <li><strong>Check Your Email:</strong> Find our email and confirm your subscription.</li>
-                    <li><strong>Download Your Chapter:</strong> The PDF is attached directly in the email.</li>
-                    <li><strong>Join the Community:</strong> Connect with other readers and get exclusive content.</li>
-                </ol>
-            </div>
+            <!-- CONTENT REORDER: Moved the CTA button to the top -->
+            <div class="book-details">
+                <h2>Thank You for Reading – Curious to Learn More?</h2>
+                <p class="intro-text">You’ve just read a chapter from <strong>Doc, I am Dizzy! When is Dizziness Dangerous?</strong></p>
+                
+                <h3>Ready to Continue Reading?</h3>
+                <p>Click below to access the full book and continue exploring how dizziness is approached in clinical practice.</p>
+                <a href="https://www.amazon.com/dp/B0CYXXG7VB" target="_blank" class="btn btn-primary btn-unlock">👉 Unlock the Full Book</a>
 
-            <div class="action-buttons">
-                <a href="downloads/sample-chapter.pdf" download class="btn btn-primary">Download Bonus Now <i class='bx bxs-download'></i></a>
-                <button id="share-btn" class="btn btn-secondary">Share with Friends <i class='bx bx-share-alt'></i></button>
-            </div>
+                <p>Understanding dizziness can be complex—and this chapter is just the beginning. If the topic intrigued you, the full book offers a comprehensive look at how various medical conditions may relate to dizziness.</p>
 
-            <div class="author-connect">
-                <p>Connect with Dr. Kumar on social media:</p>
-                <div>
-                    <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                <h3>Explore the Full Book to Learn About:</h3>
+                <ul>
+                    <li>Situations where dizziness happens upon standing – and why that may occur</li>
+                    <li>Feeling like you're still on a boat long after you’ve left it</li>
+                    <li>The connection between viral infections and lasting imbalance</li>
+                    <li>Sudden spinning sensations without hearing loss</li>
+                    <li>Headaches that coincide with dizziness</li>
+                    <li>Dizziness associated with ear symptoms or hearing changes</li>
+                    <li>The role of balance tests, hearing exams, and other investigations</li>
+                    <li>And many more symptom patterns observed in clinical settings</li>
+                </ul>
+                <p>Each chapter introduces a common presentation seen in patients and discusses possible causes and diagnostic approaches that a healthcare provider might consider.</p>
+
+                <h3>Who This Book Is For:</h3>
+                <ul>
+                    <li>Individuals seeking to better understand their symptoms</li>
+                    <li>Students and professionals interested in clinical reasoning</li>
+                    <li>Caregivers supporting someone with unexplained dizziness</li>
+                    <li>Anyone who wants to read medically grounded content presented clearly</li>
+                </ul>
+
+                <div class="caution-box">
+                    <h4>A Note of Caution:</h4>
+                    <p>This book is not a substitute for medical advice, diagnosis, or treatment. It is intended for educational purposes only. If you are experiencing dizziness or other concerning symptoms, please consult a qualified healthcare provider.</p>
                 </div>
-            </div>
-            
-            <div class="redirect-timer">
-                <p>You will be redirected to the homepage in <span id="countdown">15</span> seconds.</p>
+
+                <div class="final-summary">
+                    <h4>What's Inside:</h4>
+                    <ul>
+                        <li>14 chapters based on real-world presentations</li>
+                        <li>Organized by symptom pattern</li>
+                        <li>Written in plain language by a medical professional</li>
+                        <li>Designed to inform and guide—not diagnose</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
 
+    <!-- JS for confetti and page logic -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
